@@ -1,0 +1,22 @@
+{
+  "name": "qr-code",
+  "version": "1.0.0",
+  "description": "Generate and read QR codes",
+  "main": "index.js",
+  "scripts": {
+    "watch-ts": "tsc --watch",
+    "watch-scss": "sass --watch src/styles:styles --style compressed",
+    "watch-sass": "npm run watch-scss",
+    "watch": "npm run watch-ts & npm run watch-scss"
+  },
+  "keywords": [
+    "qr",
+    "code",
+    "qr code"
+  ],
+  "author": "Space.yg",
+  "license": "MIT",
+  "dependencies": {
+    "@types/qrcodejs": "^1.0.4"
+  }
+}

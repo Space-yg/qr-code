@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Styles -->
+		<link rel="stylesheet" href="styles/index.css">
+
+		<title>QR Code</title>
+	</head>
+	<body>
+		<!-- TODO: Add version support -->
+		<label>
+			Version
+			<select id="version">
+				<option>2.1</option>
+				<option>3.0</option>
+				<option selected>4.0</option>
+			</select>
+		</label>
+
+		<!-- Fields -->
+		<!-- TODO: Add explanation of each field -->
+		<form>
+			<!-- Name -->
+			<p>One of the following must be inputted:</p>
+			<label>
+				Name Prefix:
+				<input type="text" id="NPrefix">
+			</label>
+			<label>
+				First Name:
+				<input type="text" id="NFirst">
+			</label>
+			<label>
+				Middle Name:
+				<input type="text" id="NMiddle">
+			</label>
+			<label>
+				Last/Family Name:
+				<input type="text" id="NLast">
+			</label>
+			<label>
+				Name Suffix:
+				<input type="text" id="NSuffix">
+			</label>
+
+			<!-- Nicknames -->
+			<div class="NICKNAME">
+				<label>
+					Nickname:
+					<input type="text">
+				</label>
+				<button type="button" class="addNICKNAME">+</button>
+			</div>
+
+			<!-- Kind -->
+			<!-- TODO: Add an explanation of each KIND value -->
+			<label>
+				Kind:
+				<select id="KIND">
+					<option value="individual" selected>Individual</option>
+					<option value="group">Group</option>
+					<option value="org">Organization</option>
+					<option value="location">Location</option>
+					<option value="">Other</option>
+				</select>
+			</label>
+			<label style="display: none;">
+				Kind Other:
+				<input type="text" id="KINDOther">
+			</label>
+
+			<!-- Photos -->
+			<!-- TODO: Add a note that it is not possible to upload a photo because the QR code will be too big -->
+			<div class="PHOTO">
+				<label>
+					Photo:
+					<input type="url" id="PHOTO">
+				</label>
+				<button type="button" class="addPHOTO">+</button>
+			</div>
+
+			<label>
+				Birthday:
+				<input type="date" id="BDAY">
+			</label>
+		</form>
+
+		<!-- QR Code -->
+		<div id="QRcode"></div>
+
+		<!-- Generate QR Code -->
+		<button type="button" id="generate">Generate QR Code</button>
+
+		<!-- Scripts -->
+		<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
+		<script src="./scripts/index.js"></script>
+	</body>
+</html>
