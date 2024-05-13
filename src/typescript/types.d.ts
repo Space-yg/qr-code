@@ -18,6 +18,7 @@ type vCardFields = {
 	/** Photo of the vCard holder */
 	PHOTO: string
 
+	/** Birthday of the vCard holder */
 	BDAY: string
 
 	/** Kind of vCard */

@@ -1,5 +1,3 @@
-// import type { } from "./index.d.ts"
-
 // ELements
 /** The generate button */
 const generateButton = <HTMLButtonElement> document.getElementById("generate")!
@@ -10,6 +8,9 @@ const qrCode = new QRCode(document.getElementById("QRcode")!, {})
 
 /** Update the QR code */
 function updateQRCode(): void {
+	const DateType = <HTMLSelectElement> document.getElementById("BDAYType")
+	const DateValue = (<HTMLInputElement> document.getElementById("BDAY" + DateType.value)).value
+
 	/** All fields in the vCard */
 	const fields: vCardFields = {
 		N: {
@@ -20,7 +21,7 @@ function updateQRCode(): void {
 			suffix: (<HTMLInputElement> document.getElementById("NSuffix")).value,
 		},
 		NICKNAME: commaSeparateValues(document.getElementsByClassName("NICKNAME")),
-		BDAY: (<HTMLInputElement> document.getElementById("BDAY")).value,
+		BDAY: DateType.value === "Time" ? "T" + DateValue.slice(0, 2) + DateValue.slice(3, 5) : Date.parse(DateValue).toString(),
 		PHOTO: commaSeparateValues(document.getElementsByClassName("PHOTO")),
 		KIND: (((<HTMLSelectElement> document.getElementById("KIND")).value ?? `x-${(<HTMLInputElement> document.getElementById("KINDOther")).value}`) as KINDField),
 	}
@@ -36,6 +37,7 @@ function updateQRCode(): void {
 	//// Additional fields
 	if (fields.NICKNAME) vCard += `NICKNAME:${fields.NICKNAME}\n`
 	if (fields.PHOTO) vCard += `PHOTO:${fields.PHOTO}\n`
+	if (fields.BDAY) vCard += `BDAY:${fields.BDAY}\n`
 
 	vCard += "END:VCARD"
 	qrCode.makeCode(vCard)

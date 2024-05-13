@@ -5,6 +5,10 @@ const PHOTODiv = document.getElementsByClassName("PHOTO")[0];
 createExtraField(PHOTODiv, "PHOTO");
 const KINDSelect = document.getElementById("KIND");
 const KINDSInput = document.getElementById("KINDOther");
+const BDAYSelect = document.getElementById("BDAYType");
+const BDAYDate = document.getElementById("BDAYDate");
+const BDAYDateTime = document.getElementById("BDAYDateTime");
+const BDAYTime = document.getElementById("BDAYTime");
 function createExtraField(element, field) {
     const clone = element.cloneNode(true);
     clone.insertAdjacentHTML("beforeend", `<button type="button" class="remove${field}">-</button>`);
@@ -25,4 +29,15 @@ KINDSelect.addEventListener("input", () => {
         KINDSInput.parentElement.style.display = "block";
     else
         KINDSInput.parentElement.style.display = "none";
+});
+BDAYSelect.addEventListener("input", () => {
+    BDAYDate.parentElement.style.display = "none";
+    BDAYDateTime.parentElement.style.display = "none";
+    BDAYTime.parentElement.style.display = "none";
+    if (BDAYSelect.value === "Date")
+        BDAYDate.parentElement.style.display = "";
+    else if (BDAYSelect.value === "DateTime")
+        BDAYDateTime.parentElement.style.display = "";
+    else if (BDAYSelect.value === "Time")
+        BDAYTime.parentElement.style.display = "";
 });

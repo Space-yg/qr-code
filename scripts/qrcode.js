@@ -3,6 +3,8 @@ const generateButton = document.getElementById("generate");
 var vCard;
 const qrCode = new QRCode(document.getElementById("QRcode"), {});
 function updateQRCode() {
+    const DateType = document.getElementById("BDAYType");
+    const DateValue = document.getElementById("BDAY" + DateType.value).value;
     const fields = {
         N: {
             prefix: document.getElementById("NPrefix").value,
@@ -12,7 +14,7 @@ function updateQRCode() {
             suffix: document.getElementById("NSuffix").value,
         },
         NICKNAME: commaSeparateValues(document.getElementsByClassName("NICKNAME")),
-        BDAY: document.getElementById("BDAY").value,
+        BDAY: DateType.value === "Time" ? "T" + DateValue.slice(0, 2) + DateValue.slice(3, 5) : Date.parse(DateValue).toString(),
         PHOTO: commaSeparateValues(document.getElementsByClassName("PHOTO")),
         KIND: (document.getElementById("KIND").value ?? `x-${document.getElementById("KINDOther").value}`),
     };
@@ -27,6 +29,8 @@ function updateQRCode() {
         vCard += `NICKNAME:${fields.NICKNAME}\n`;
     if (fields.PHOTO)
         vCard += `PHOTO:${fields.PHOTO}\n`;
+    if (fields.BDAY)
+        vCard += `BDAY:${fields.BDAY}\n`;
     vCard += "END:VCARD";
     qrCode.makeCode(vCard);
 }

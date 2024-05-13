@@ -8,7 +8,11 @@ createExtraField(PHOTODiv, "PHOTO")
 // KIND
 const KINDSelect = <HTMLSelectElement> document.getElementById("KIND")
 const KINDSInput = <HTMLInputElement> document.getElementById("KINDOther")
-// const BDAY = 
+// BDAY
+const BDAYSelect = <HTMLSelectElement> document.getElementById("BDAYType")
+const BDAYDate = <HTMLInputElement> document.getElementById("BDAYDate")
+const BDAYDateTime = <HTMLInputElement> document.getElementById("BDAYDateTime")
+const BDAYTime = <HTMLInputElement> document.getElementById("BDAYTime")
 
 /**
  * Create an extra field from an existing field
@@ -44,8 +48,20 @@ function commaSeparateValues(elements: HTMLCollectionOf<Element>): string {
 	return [...(<HTMLCollectionOf<HTMLDivElement>> elements)].map(a => a.getElementsByTagName("input")[0].value).reduce((pre, cur) => pre + "," + cur)
 }
 
-// vCard fields' eLements events
+//// vCard fields' eLements events
+// KIND
 KINDSelect.addEventListener("input", () => {
 	if (!KINDSelect.value) KINDSInput.parentElement!.style.display = "block"
 	else KINDSInput.parentElement!.style.display = "none"
+})
+
+// BDAY
+BDAYSelect.addEventListener("input", () => {
+	BDAYDate.parentElement!.style.display = "none"
+	BDAYDateTime.parentElement!.style.display = "none"
+	BDAYTime.parentElement!.style.display = "none"
+
+	if (BDAYSelect.value === "Date") BDAYDate.parentElement!.style.display = ""
+	else if (BDAYSelect.value === "DateTime") BDAYDateTime.parentElement!.style.display = ""
+	else if (BDAYSelect.value === "Time") BDAYTime.parentElement!.style.display = ""
 })
