@@ -1,10 +1,14 @@
 "use strict";
 const generateButton = document.getElementById("generate");
 var vCard;
-const qrCode = new QRCode(document.getElementById("QRcode"), {});
+const qrCode = new QRCode(document.getElementById("QRcode"), {
+    correctLevel: QRCode.CorrectLevel.L
+});
 function updateQRCode() {
-    const DateType = document.getElementById("BDAYType");
-    const DateValue = document.getElementById("BDAY" + DateType.value).value;
+    const BDAYDateType = document.getElementById("BDAYType");
+    const BDAYDateValue = document.getElementById("BDAY" + BDAYDateType.value).value;
+    const ANNIVERSARYDateType = document.getElementById("ANNIVERSARYType");
+    const ANNIVERSARYDateValue = document.getElementById("ANNIVERSARY" + ANNIVERSARYDateType.value).value;
     const fields = {
         N: {
             prefix: document.getElementById("NPrefix").value,
@@ -14,7 +18,9 @@ function updateQRCode() {
             suffix: document.getElementById("NSuffix").value,
         },
         NICKNAME: commaSeparateValues(document.getElementsByClassName("NICKNAME")),
-        BDAY: DateType.value === "Time" ? "T" + DateValue.slice(0, 2) + DateValue.slice(3, 5) : Date.parse(DateValue).toString(),
+        GENDER: document.getElementById("GENDER").value,
+        BDAY: BDAYDateType.value === "Time" ? "T" + BDAYDateValue.slice(0, 2) + BDAYDateValue.slice(3, 5) : Date.parse(BDAYDateValue).toString(),
+        ANNIVERSARY: ANNIVERSARYDateType.value === "Time" ? "T" + ANNIVERSARYDateValue.slice(0, 2) + ANNIVERSARYDateValue.slice(3, 5) : Date.parse(ANNIVERSARYDateValue).toString(),
         PHOTO: commaSeparateValues(document.getElementsByClassName("PHOTO")),
         KIND: (document.getElementById("KIND").value ?? `x-${document.getElementById("KINDOther").value}`),
     };
@@ -27,10 +33,14 @@ function updateQRCode() {
 	`;
     if (fields.NICKNAME)
         vCard += `NICKNAME:${fields.NICKNAME}\n`;
+    if (fields.GENDER)
+        vCard += `GENDER:${fields.GENDER}\n`;
     if (fields.PHOTO)
         vCard += `PHOTO:${fields.PHOTO}\n`;
-    if (fields.BDAY)
+    if (fields.BDAY !== "NaN")
         vCard += `BDAY:${fields.BDAY}\n`;
+    if (fields.ANNIVERSARY !== "NaN")
+        vCard += `ANNIVERSARY:${fields.ANNIVERSARY}\n`;
     vCard += "END:VCARD";
     qrCode.makeCode(vCard);
 }

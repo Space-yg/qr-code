@@ -27,9 +27,9 @@
 		<label>
 			vCard Version:
 			<select id="version">
-				<option>2.1</option>
-				<option>3.0</option>
 				<option selected>4.0</option>
+				<option>3.0</option>
+				<option>2.1</option>
 			</select>
 		</label>
 
@@ -124,6 +124,44 @@
 				<label style="display: none;">
 					Date and Time:
 					<input type="datetime-local" id="BDAYDateTime">
+				</label>
+			</div>
+
+			<!-- Anniversary -->
+			<div class="collection">
+				<label>
+					Anniversary:
+					<select id="ANNIVERSARYType">
+						<option value="Date" selected>Date</option>
+						<option value="Time">Time</option>
+						<option value="DateTime">Date and Time</option>
+					</select>
+				</label>
+				<label>
+					Date:
+					<input type="date" id="ANNIVERSARYDate">
+				</label>
+				<label style="display: none;">
+					Time:
+					<input type="time" id="ANNIVERSARYTime">
+				</label>
+				<label style="display: none;">
+					Date and Time:
+					<input type="datetime-local" id="ANNIVERSARYDateTime">
+				</label>
+			</div>
+
+			<!-- Gender -->
+			<div class="collection">
+				<label>
+					Gender:
+					<select id="GENDER">
+						<option value="" selected></option>
+						<option value="M">Male</option>
+						<option value="F">Female</option>
+						<option value="U">Unknown</option>
+						<option value="N">Not applicable</option>
+					</select>
 				</label>
 			</div>
 		</form>

@@ -13,6 +13,11 @@ const BDAYSelect = <HTMLSelectElement> document.getElementById("BDAYType")
 const BDAYDate = <HTMLInputElement> document.getElementById("BDAYDate")
 const BDAYDateTime = <HTMLInputElement> document.getElementById("BDAYDateTime")
 const BDAYTime = <HTMLInputElement> document.getElementById("BDAYTime")
+// ANNIVERSARY
+const ANNIVERSARYSelect = <HTMLSelectElement> document.getElementById("ANNIVERSARYType")
+const ANNIVERSARYDate = <HTMLInputElement> document.getElementById("ANNIVERSARYDate")
+const ANNIVERSARYDateTime = <HTMLInputElement> document.getElementById("ANNIVERSARYDateTime")
+const ANNIVERSARYTime = <HTMLInputElement> document.getElementById("ANNIVERSARYTime")
 
 /**
  * Create an extra field from an existing field
@@ -64,4 +69,15 @@ BDAYSelect.addEventListener("input", () => {
 	if (BDAYSelect.value === "Date") BDAYDate.parentElement!.style.display = ""
 	else if (BDAYSelect.value === "DateTime") BDAYDateTime.parentElement!.style.display = ""
 	else if (BDAYSelect.value === "Time") BDAYTime.parentElement!.style.display = ""
+})
+
+// ANNIVERSARY
+ANNIVERSARYSelect.addEventListener("input", () => {
+	ANNIVERSARYDate.parentElement!.style.display = "none"
+	ANNIVERSARYDateTime.parentElement!.style.display = "none"
+	ANNIVERSARYTime.parentElement!.style.display = "none"
+
+	if (ANNIVERSARYSelect.value === "Date") ANNIVERSARYDate.parentElement!.style.display = ""
+	else if (ANNIVERSARYSelect.value === "DateTime") ANNIVERSARYDateTime.parentElement!.style.display = ""
+	else if (ANNIVERSARYSelect.value === "Time") ANNIVERSARYTime.parentElement!.style.display = ""
 })

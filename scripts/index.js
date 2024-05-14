@@ -9,6 +9,10 @@ const BDAYSelect = document.getElementById("BDAYType");
 const BDAYDate = document.getElementById("BDAYDate");
 const BDAYDateTime = document.getElementById("BDAYDateTime");
 const BDAYTime = document.getElementById("BDAYTime");
+const ANNIVERSARYSelect = document.getElementById("ANNIVERSARYType");
+const ANNIVERSARYDate = document.getElementById("ANNIVERSARYDate");
+const ANNIVERSARYDateTime = document.getElementById("ANNIVERSARYDateTime");
+const ANNIVERSARYTime = document.getElementById("ANNIVERSARYTime");
 function createExtraField(element, field) {
     const clone = element.cloneNode(true);
     clone.insertAdjacentHTML("beforeend", `<button type="button" class="remove${field}">-</button>`);
@@ -40,4 +44,15 @@ BDAYSelect.addEventListener("input", () => {
         BDAYDateTime.parentElement.style.display = "";
     else if (BDAYSelect.value === "Time")
         BDAYTime.parentElement.style.display = "";
+});
+ANNIVERSARYSelect.addEventListener("input", () => {
+    ANNIVERSARYDate.parentElement.style.display = "none";
+    ANNIVERSARYDateTime.parentElement.style.display = "none";
+    ANNIVERSARYTime.parentElement.style.display = "none";
+    if (ANNIVERSARYSelect.value === "Date")
+        ANNIVERSARYDate.parentElement.style.display = "";
+    else if (ANNIVERSARYSelect.value === "DateTime")
+        ANNIVERSARYDateTime.parentElement.style.display = "";
+    else if (ANNIVERSARYSelect.value === "Time")
+        ANNIVERSARYTime.parentElement.style.display = "";
 });
